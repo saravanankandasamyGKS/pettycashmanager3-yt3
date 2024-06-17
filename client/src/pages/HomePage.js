@@ -73,7 +73,7 @@ const HomePage = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
         setLoading(true);
-        const res = await axios.post("https://pettycashmanager3-yt3-1.onrender.com/transections/get-transections", {
+        const res = await axios.post("https://pettycashmanager3-yt3-1.onrender.com/api/v1/transections/get-transections", {
           userid: user._id,
           frequency,
           selectedDate,
@@ -93,7 +93,7 @@ const HomePage = () => {
   const handleDelete = async (record) => {
     try {
       setLoading(true);
-      await axios.post("https://pettycashmanager3-yt3-1.onrender.com/transections/delete-transections", {
+      await axios.post("https://pettycashmanager3-yt3-1.onrender.com/api/v1/transections/delete-transections", {
         transactionId: record._id,
       });
       setLoading(false);
@@ -110,7 +110,7 @@ const HomePage = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       setLoading(true);
       if (editable) {
-        await axios.post("https://pettycashmanager3-yt3-1.onrender.com/transections/edit-transections", {
+        await axios.post("https://pettycashmanager3-yt3-1.onrender.com/api/v1/transections/edit-transections", {
           payload: {
             ...values,
             userid: user._id,
@@ -120,7 +120,7 @@ const HomePage = () => {
         setLoading(false);
         message.success("Transection updated Successfully");
       } else {
-        await axios.post("https://pettycashmanager3-yt3-1.onrender.com/transections/add-transections", {
+        await axios.post("https://pettycashmanager3-yt3-1.onrender.com/api/v1/transections/add-transections", {
           ...values,
           userid: user._id,
         });
